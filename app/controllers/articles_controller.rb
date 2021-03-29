@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  # before_action :set_article, only: %i[ show edit update destroy ]
 
   # GET /articles or /articles.json
   def index
@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    
+    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:notice] =  "Article was successfully updated." 
       redirect_to @article
@@ -53,21 +53,21 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
-    articleId = @article.id
+    @article = Article.find(params[:id])
     if @article.destroy
-      flash[:notice] = "Article with id:#{articleId} was successfully destroyed."
+      flash[:notice] = "Article with id:#{@article.id} was successfully destroyed."
       redirect_to @article
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
+    # def set_article
+    #   @article = Article.find(params[:id])
+    # end
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :description, :theme)
+      params.require(:article).permit(:title, :description, :theme)#takes from params -> article -> permited
     end
 end
