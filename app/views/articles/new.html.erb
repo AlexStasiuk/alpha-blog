@@ -1,5 +1,22 @@
 <h1>New Article</h1>
 
-<%= render 'form', article: @article %>
-
-<%= link_to 'Back', articles_path %>
+<%=form_with scope: :article, url: articles_path, local: true do |f|%>
+<p>
+    <%= f.label :title%>
+    <br>
+    <%= f.text_field :title%>
+</p>
+<p>
+    <%= f.label :description%>
+    <br>
+    <%= f.text_area :description%>
+</p>
+<p>
+    <%= f.label :theme%>
+    <br>
+    <%= f.text_field :theme%>
+</p>
+<p>
+<%= f.submit%>
+</p>
+<%end%>
