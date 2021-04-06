@@ -1,1 +1,14 @@
-@import 'bootstrap/dist/css/bootstrap';// doest work
+@import 'bootstrap/dist/css/bootstrap';
+
+.navbar-brand:hover{
+    background-color: white !important;
+}
+.navbar-nav{
+    background-color: teal !important;
+}
+.navbar-collapse{
+    background-color: turquoise !important;
+}
+.navbar-custom {
+    background-color: lightgreen;
+}
