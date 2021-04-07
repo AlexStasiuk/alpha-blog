@@ -1,32 +1,46 @@
-<%= form_with(model: @article, local: true) do |form| %>
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+<div class="container">
+  <div class="row justify-content-center ">
+    <div class="col-10">
+      <%= form_with(model: @article, local: true,class:"shadow rounded bg-info p-3") do |form| %>
+        <% if @article.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-      <ul>
-        <% @article.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+            <ul>
+              <% @article.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="form-group row">
+          <%= form.label :title, class:"col-2 col-form-label text-light"%>
+          <div class="col-10">
+            <%= form.text_field :title, class:"form-control shadow", placeholder:"Title of article"%>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :description, class:"col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= form.text_area :description, rows: 10, class:"form-control shadow", placeholder:"Description of article" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :theme, class:"col-2 col-form-label text-light"%>
+          <div class="col-10">
+            <%= form.text_field :theme, class:"form-control shadow rounded", placeholder:"Article's theme" %>
+          </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+          <%= form.submit class: "btn btn-outline-light btn-lg"%>
+        </div>
+      <% end %>
+      <div class="row justify-content-center"><%= link_to 'All articles', articles_path, class:"text-info myLink"%></div>
+      
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :theme %>
-    <%= form.text_field :theme %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
