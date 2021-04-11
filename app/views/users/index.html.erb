@@ -1,3 +1,6 @@
+<div class="flickr_pagination">
+  <%= will_paginate @users, :container => false %>
+</div>
 <div class="container">
   <h1 class="text-center">Bloggers</h1>
   <div class="allArticles">
@@ -16,4 +19,7 @@
       </div>
     <% end %>
   </div>
+</div>
+<div class="flickr_pagination">
+  <%= will_paginate @users, :container => false %>
 </div>

@@ -1,5 +1,7 @@
+<div class="flickr_pagination">
+  <%= will_paginate obj, :container => false %>
+</div>
 <div class="container">
-  <h1 class="text-center">Articles</h1>
   <div class="allArticles">
     <% obj.each do |article| %>
       <div class="card mt-4 shadow" style="width: 50%;">
@@ -20,4 +22,7 @@
       </div>
     <% end %>
   </div>
+</div>
+<div class="flickr_pagination">
+  <%= will_paginate obj, :container => false %>
 </div>
