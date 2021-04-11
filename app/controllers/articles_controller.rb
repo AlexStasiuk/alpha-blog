@@ -14,7 +14,6 @@ class ArticlesController < ApplicationController
   # GET /articles/1 or /articles/1.json
   def show
     #byebug # for debuging 
-    @article = Article.find(params[:id])
     @myVar = params
   end
 
@@ -25,7 +24,6 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
   end
 
   # POST /articles or /articles.json
@@ -43,17 +41,17 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
-      flash[:notice] =  "Article was successfully updated." 
+      flash[:notice] = "Article was successfully updated." 
       redirect_to @article
+    else
+      redirect_to edit_article_path(@article)
     end
     
   end
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
     if @article.destroy
       flash[:notice] = "Article with id:#{@article.id} was successfully destroyed."
       redirect_to @article
