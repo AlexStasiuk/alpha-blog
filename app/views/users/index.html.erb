@@ -4,8 +4,8 @@
     <% @users.each do |user| %>
       <div class="card mt-4 shadow" style="width: 50%;">
         <div class="card-body text-center">
-          <h1><%= user.username%></h1>
-          <%= gravatar_for user, size: 200 %>
+          <h1><%=link_to "#{user.username}",user%></h1>
+          <%=link_to gravatar_for(user, size: 150), user%>
           <h4>Articles on site <%= user.articles.length%></h4>
           <%= link_to "View profile", user, class: "btn btn-outline-success" %>
           <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>

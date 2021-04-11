@@ -4,7 +4,9 @@
     <% obj.each do |article| %>
       <div class="card mt-4 shadow" style="width: 50%;">
         <div class="card-body text-center">
-          <p class="card-text"><%= "By " + article.user.username%></p>   
+          <% if article.user%>
+            <p class="card-text">By <%= link_to "#{article.user.username}", article.user%></p>   
+          <% end %>
           <h5 class="card-title"><%= link_to article.title, article, class:"card-link text-success" %></h5>
           <h6 class="card-subtitle"><%=article.theme%></h6>
           <p class="card-text"><%= article.description %></p>   
