@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="text-center">Bloggers</h1>
+  <div class="allArticles">
+    <% @users.each do |user| %>
+      <div class="card mt-4 shadow" style="width: 50%;">
+        <div class="card-body text-center">
+          <h1><%= user.username%></h1>
+          <%= gravatar_for user, size: 200 %>
+          <h4>Articles on site <%= user.articles.length%></h4>
+          <%= link_to "View profile", user, class: "btn btn-outline-success" %>
+          <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+          <br>
+          <small>Joined in <%= time_ago_in_words(user.created_at)%>,</small>
+          <small>Update info <%= time_ago_in_words(user.updated_at)%></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
