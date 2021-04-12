@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
-    def hello
-        render html: "Hello world o"
-        #render means to display or show something
-    end
+  helper_method :current_user, :logged_in?
+  def hello
+      render html: "Hello world o"
+      #render means to display or show something
+  end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def logged_in?
+    !!current_user
+  end
 end
