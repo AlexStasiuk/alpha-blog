@@ -11,7 +11,9 @@
           <%=link_to gravatar_for(user, size: 150), user%>
           <h4>Articles on site <%= user.articles.length%></h4>
           <%= link_to "View profile", user, class: "btn btn-outline-success" %>
+          <% if logged_in? && current_user == user%>
           <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+          <% end %>
           <br>
           <small>Joined in <%= time_ago_in_words(user.created_at)%>,</small>
           <small>Update info <%= time_ago_in_words(user.updated_at)%></small>
