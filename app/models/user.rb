@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :articles dependent: :destroy
+    has_many :articles, dependent: :destroy
     before_save {
         self.email = self.email.downcase
         self.username = self.username.capitalize
