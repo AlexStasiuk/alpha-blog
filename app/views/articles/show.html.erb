@@ -8,7 +8,7 @@
         <h5 class="card-title"><%= link_to @article.title, @article, class:"card-link text-success" %></h5>
         <h6 class="card-subtitle"><%=@article.theme%></h6>
         <div class="card-text text-left "><%= simple_format(@article.description) %></div>  
-        <% if logged_in? && @article.user == current_user%> 
+        <% if logged_in? && (@article.user == current_user || current_user.admin?)%> 
           <%= link_to 'Edit', edit_article_path(@article), class:"card-link btn btn-outline-info"%>
           <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link btn btn-outline-danger"%>
         <% end %>

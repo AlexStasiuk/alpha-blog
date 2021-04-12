@@ -13,9 +13,9 @@
           <h6 class="card-subtitle"><%=article.theme%></h6>
           <p class="card-text"><%= article.description %></p>   
           <%= link_to 'Show', article, class:"card-link btn btn-outline-success"%>
-          <% if article.user == current_user && logged_in?%>
-          <%= link_to 'Edit', edit_article_path(article), class:"card-link btn btn-outline-info"%>
-          <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link btn btn-outline-danger"%>
+          <% if logged_in? && (article.user == current_user || current_user.admin?)%>
+            <%= link_to 'Edit', edit_article_path(article), class:"card-link btn btn-outline-info"%>
+            <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link btn btn-outline-danger"%>
           <% end %>
           <br>
           <small>Created in <%= time_ago_in_words(article.created_at)%>,</small>
