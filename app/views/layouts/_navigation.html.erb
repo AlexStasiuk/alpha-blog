@@ -17,17 +17,31 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Articles
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "All articles", articles_url, class:"dropdown-item"%>
-            <%= link_to "New article", new_article_path, class:"dropdown-item"%>
-            </div>
+            <% if logged_in?%>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to "All articles", articles_url, class:"dropdown-item"%>
+                    <%= link_to "New article", new_article_path, class:"dropdown-item"%>
+                </div>
+            <% else %>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to "All articles", articles_url, class:"dropdown-item"%>
+                </div>
+            <% end %>
+
         </li>
         <% if logged_in? %>
-            <li class="nav-item">
-            <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile [<%= current_user.username %>]
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
+            </div>
             </li>
+            
             <li class="nav-item">
-            <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
+                <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
             </li>
         <% else %>
             <li class="nav-item">
