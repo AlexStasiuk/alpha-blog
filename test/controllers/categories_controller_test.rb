@@ -3,6 +3,8 @@ require "test_helper"
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @category = Category.create(name: "sports")
+    @admin_user = User.create(username: "Ivan", email:"adminemail@gmail.com", password:"password", admin: true)
+    @regular_user = User.create(username: "Pupkin",email:"pupkin20@gmail.com", password:"password")
   end
 
   test "should get index" do
@@ -11,16 +13,27 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    sign_in_as(@admin_user)
     get new_category_url
     assert_response :success
   end
 
-  test "should create category" do
-    assert_difference('Category.count',1) do
-      post categories_url, params: { category: { name: "Football" } }
+  test "should not create category if not admin" do
+    sign_in_as(@regular_user)
+    assert_no_difference('Category.count') do
+      post categories_url, params: { category: { name: "Football" }}
     end
 
-    assert_redirected_to category_url(Category.last)
+    assert_redirected_to categories_url
+  end
+
+  test "should create category if user is admin" do
+    sign_in_as(@admin_user)
+    assert_difference('Category.count',1) do
+      post categories_url, params: { category: { name: "Football" }}
+    end
+
+    assert_redirected_to Category.last
   end
 
   test "should show category" do
