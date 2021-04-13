@@ -9,6 +9,9 @@
           <% if article.user%>
             <p class="card-text">By <%= link_to "#{article.user.username}", article.user%></p>   
           <% end %>
+          <% if article.categories.any? %>
+            <div class="mt-2"><%= render article.categories %></div> 
+          <% end %>
           <h5 class="card-title"><%= link_to article.title, article, class:"card-link text-success" %></h5>
           <h6 class="card-subtitle"><%=article.theme%></h6>
           <p class="card-text"><%= article.description %></p>   
