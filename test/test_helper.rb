@@ -13,4 +13,7 @@ class ActiveSupport::TestCase
   def sign_in_as(user)
     post login_path, params:{session:{email: user.email, password:"password"}}
   end
+  def logout_as(user)
+    delete logout_path params:{session:{user_id: user.id} }
+  end
 end
